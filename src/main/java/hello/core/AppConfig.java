@@ -14,18 +14,35 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+
+    // 순서
+    // AppConfig.memberService
+    // AppConfig.getMemberRepository
+    // AppConfig.getMemberRepository
+    // AppConfig.orderService
+    // AppConfig.getMemberRepository
+
+
+    // 실제
+    // AppConfig.memberService
+    // AppConfig.getMemberRepository
+    // AppConfig.orderService
+    // 한번만 호출 된다.???
     @Bean
     public MemberService memberService(){
+        System.out.println("AppConfig.memberService");
         return new MemberServiceImpl(getMemberRepository());
     }
 
     @Bean
     public static MemoryMemberRepository getMemberRepository() {
+        System.out.println("AppConfig.getMemberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
+        System.out.println("AppConfig.orderService");
         return new OrderServiceImpl(getMemberRepository(), discountPolicy());
     }
 
