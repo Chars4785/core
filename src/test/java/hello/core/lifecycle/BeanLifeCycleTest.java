@@ -18,7 +18,8 @@ public class BeanLifeCycleTest  {
     @Configuration
     static class LifeCycleConfig{
 
-        @Bean(initMethod = "init", destroyMethod = "close") //default  는 추론해서 close, shoutdown 이런 함수를 찾아서 호출한다.
+//        @Bean(initMethod = "init", destroyMethod = "close") //default  는 추론해서 close, shoutdown 이런 함수를 찾아서 호출한다.
+        @Bean
         public NetworkClient networkClient(){
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://well.com");
