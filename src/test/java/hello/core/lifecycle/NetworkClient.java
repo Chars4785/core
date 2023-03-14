@@ -28,6 +28,18 @@ public class NetworkClient  {
     public void disconnect(){
         System.out.println("close = " + url);
     }
+
+    public void init(){
+        System.out.println("NetworkClient.init");
+        connect();
+        call("초기화 연결 메시지");
+    }
+
+    public void close() throws Exception {
+        System.out.println("NetworkClient.close");
+        disconnect();
+    }
+
 // 초기화 소멸 함수를 호출 하는건 신박하지만,
 // 해당 함수이름을 변경하지 못하고, 커스텀 하기 힘들다 요즘은 사용하지 않음
 //    @Override

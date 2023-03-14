@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanLifeCycleTest  {
     @Test
     public void lifeCycleTest(){
-        ConfigurableApplicationContext ac = new AnnotationConfigApplicationContext(Lifecycle.class);
+        ConfigurableApplicationContext ac = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
         NetworkClient client = ac.getBean(NetworkClient.class);
         ac.close();
     }
@@ -18,7 +18,7 @@ public class BeanLifeCycleTest  {
     @Configuration
     static class LifeCycleConfig{
 
-        @Bean
+        @Bean(initMethod = "init", destroyMethod = "close") //default  는 추론해서 close, shoutdown 이런 함수를 찾아서 호출한다.
         public NetworkClient networkClient(){
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://well.com");
